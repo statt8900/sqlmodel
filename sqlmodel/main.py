@@ -302,10 +302,11 @@ class SQLModelMetaclass(ModelMetaclass, DeclarativeMeta):
         if config_registry is not Undefined:
             config_registry = cast(registry, config_registry)
             # If it was passed by kwargs, ensure it's also set in config
-            new_cls.__config__.registry = config_table
+            # Doesn't appear to correctly set the registry
+            # new_cls.__config__.registry = config_table
+            # setattr(new_cls, "__abstract__", True)
             setattr(new_cls, "_sa_registry", config_registry)
             setattr(new_cls, "metadata", config_registry.metadata)
-            setattr(new_cls, "__abstract__", True)
         return new_cls
 
     # Override SQLAlchemy, allow both SQLAlchemy and plain Pydantic models
@@ -406,6 +407,7 @@ def get_sqlachemy_type(field: ModelField) -> Any:
         return AutoString
     if issubclass(field.type_, uuid.UUID):
         return GUID
+    raise ValueError(f"Unknown field type: {field}")
 
 
 def get_column_from_field(field: ModelField) -> Column:
@@ -491,8 +493,8 @@ class SQLModel(BaseModel, metaclass=SQLModelMetaclass, registry=default_registry
         # Only raise errors if not a SQLModel model
         if (
             not getattr(__pydantic_self__.__config__, "table", False)
-            and validation_error
-        ):
+            or getattr(__pydantic_self__.__config__, "force_validation", False)
+        ) and validation_error:
             raise validation_error
         # Do not set values as in Pydantic, pass them through setattr, so SQLAlchemy
         # can handle them
