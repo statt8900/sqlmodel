@@ -48,7 +48,7 @@ from sqlalchemy.orm.attributes import set_attribute
 from sqlalchemy.orm.decl_api import DeclarativeMeta
 from sqlalchemy.orm.instrumentation import is_instrumented
 from sqlalchemy.sql.schema import MetaData
-from sqlalchemy.sql.sqltypes import LargeBinary, Time
+from sqlalchemy.sql.sqltypes import LargeBinary, Time, JSON
 
 from .sql.sqltypes import GUID, AutoString
 
@@ -393,6 +393,8 @@ def get_sqlachemy_type(field: ModelField) -> Any:
         return Enum
     if issubclass(field.type_, bytes):
         return LargeBinary
+    if issubclass(field.type_, dict):
+        return JSON
     if issubclass(field.type_, Decimal):
         return Numeric
     if issubclass(field.type_, ipaddress.IPv4Address):
@@ -419,7 +421,7 @@ def get_column_from_field(field: ModelField) -> Column:
     nullable = not field.required
     index = getattr(field.field_info, "index", Undefined)
     if index is Undefined:
-        index = True
+        index = False
     if hasattr(field.field_info, "nullable"):
         field_nullable = getattr(field.field_info, "nullable")
         if field_nullable != Undefined:
