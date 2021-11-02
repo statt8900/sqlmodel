@@ -27,7 +27,13 @@ from typing import (
 from pydantic import BaseModel
 from pydantic.errors import ConfigError, DictError
 from pydantic.fields import FieldInfo as PydanticFieldInfo
-from pydantic.fields import ModelField, Undefined, UndefinedType
+from pydantic.fields import (
+    ModelField,
+    Undefined,
+    UndefinedType,
+    SHAPE_LIST,
+    SHAPE_SINGLETON,
+)
 from pydantic.main import BaseConfig, ModelMetaclass, validate_model
 from pydantic.typing import ForwardRef, NoArgAnyCallable, resolve_annotations
 from pydantic.utils import ROOT_KEY, Representation
@@ -41,6 +47,7 @@ from sqlalchemy import (
     Integer,
     Interval,
     Numeric,
+    ARRAY,
     inspect,
 )
 from sqlalchemy.orm import RelationshipProperty, declared_attr, registry, relationship
@@ -417,6 +424,15 @@ def get_column_from_field(field: ModelField) -> Column:
     if isinstance(sa_column, Column):
         return sa_column
     sa_type = get_sqlachemy_type(field)
+    # Check for list fields
+    if field.shape == SHAPE_LIST:
+        sa_type = ARRAY(sa_type)
+    elif field.shape == SHAPE_SINGLETON:
+        pass
+    else:
+        raise ValueError(
+            f"Invalid field, can only use lists or non-list values: {field.outer_type_}"
+        )
     primary_key = getattr(field.field_info, "primary_key", False)
     nullable = not field.required
     index = getattr(field.field_info, "index", Undefined)
