@@ -25,6 +25,9 @@ exclude = ["sqlmodel/sql/expression.py.jinja2"]
 homepage = "https://github.com/tiangolo/sqlmodel"
 license = "MIT"
 name = "modelyst-sqlmodel"
+packages = [
+  {include = "sqlmodel", from = "."},
+]
 readme = "README.md"
 repository = "https://github.com/tiangolo/sqlmodel"
 version = "0"
