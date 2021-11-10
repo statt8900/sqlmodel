@@ -30,7 +30,7 @@ packages = [
 ]
 readme = "README.md"
 repository = "https://github.com/tiangolo/sqlmodel"
-version = "0"
+version = "0.0.5"
 
 [tool.poetry.dependencies]
 SQLAlchemy = ">=1.4.17,<1.5.0"
