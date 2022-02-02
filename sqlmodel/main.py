@@ -25,8 +25,8 @@ from typing import (
 
 from pydantic import BaseConfig, BaseModel
 from pydantic.errors import ConfigError, DictError
-from pydantic.fields import FieldInfo as PydanticFieldInfo
-from pydantic.fields import ModelField, Undefined, UndefinedType
+from pydantic.fields import FieldInfo as PydanticFieldInfo 
+from pydantic.fields import ModelField, Undefined, UndefinedType, SHAPE_LIST, SHAPE_SINGLETON
 from pydantic.main import ModelMetaclass, validate_model
 from pydantic.typing import ForwardRef, NoArgAnyCallable, resolve_annotations
 from pydantic.utils import ROOT_KEY, Representation
