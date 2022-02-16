@@ -30,7 +30,7 @@ packages = [
 ]
 readme = "README.md"
 repository = "https://github.com/tiangolo/sqlmodel"
-version = "0.0.7"
+version = "0.0.8"
 
 [tool.poetry.dependencies]
 SQLAlchemy = ">=1.4.17,<1.5.0"
@@ -39,15 +39,15 @@ python = "^3.6.1"
 sqlalchemy2-stubs = {version = "*", allow-prereleases = true}
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.2.4"
-mypy = "0.930"
+coverage = {extras = ["toml"], version = "^5.5"}
+fastapi = "^0.68.0"
 flake8 = "^3.9.2"
 isort = "^5.9.3"
 mdx-include = "^1.4.1"
 mkdocs = "^1.2.1"
 mkdocs-material = "^8.1.4"
-coverage = {extras = ["toml"], version = "^5.5"}
-fastapi = "^0.68.0"
+mypy = "0.930"
+pytest = "^6.2.4"
 requests = "^2.26.0"
 
 [build-system]
