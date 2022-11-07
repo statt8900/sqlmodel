@@ -33,21 +33,22 @@ repository = "https://github.com/tiangolo/sqlmodel"
 version = "0.0.8"
 
 [tool.poetry.dependencies]
-SQLAlchemy = ">=1.4.17,<1.5.0"
+SQLAlchemy = ">=1.4.17,<=1.4.41"
 pydantic = "^1.8.2"
 python = "^3.6.1"
 sqlalchemy2-stubs = {version = "*", allow-prereleases = true}
 
 [tool.poetry.dev-dependencies]
 coverage = {extras = ["toml"], version = "^5.5"}
+coverage = {extras = ["toml"], version = "^5.5"}
 fastapi = "^0.68.0"
+fastapi = "^0.68.1"
 flake8 = "^3.9.2"
 isort = "^5.9.3"
 mdx-include = "^1.4.1"
+mdx-include = "^1.4.1"
 mkdocs = "^1.2.1"
 mkdocs-material = "^8.1.4"
-mypy = "0.930"
-pytest = "^6.2.4"
 requests = "^2.26.0"
 
 [build-system]
@@ -100,3 +101,5 @@ warn_unused_ignores = true
 [[tool.mypy.overrides]]
 module = "sqlmodel.sql.expression"
 warn_unused_ignores = false
+
+# invalidate CI cache: 1
