@@ -22,15 +22,15 @@ classifiers = [
 description = "SQLModel, SQL databases in Python, designed for simplicity, compatibility, and robustness."
 documentation = "https://sqlmodel.tiangolo.com"
 exclude = ["sqlmodel/sql/expression.py.jinja2"]
-homepage = "https://github.com/tiangolo/sqlmodel"
+homepage = "https://github.com/modelyst/sqlmodel"
 license = "MIT"
 name = "modelyst-sqlmodel"
 packages = [
   {include = "sqlmodel", from = "."},
 ]
 readme = "README.md"
-repository = "https://github.com/tiangolo/sqlmodel"
-version = "0.0.8"
+repository = "https://github.com/modelyst/sqlmodel"
+version = "0.0.9"
 
 [tool.poetry.dependencies]
 SQLAlchemy = ">=1.4.17,<=1.4.41"
