@@ -25,7 +25,7 @@ from typing import (
 
 from pydantic import BaseConfig, BaseModel
 from pydantic.errors import ConfigError, DictError
-from pydantic.fields import SHAPE_SINGLETON
+from pydantic.fields import SHAPE_SINGLETON, SHAPE_LIST
 from pydantic.fields import FieldInfo as PydanticFieldInfo
 from pydantic.fields import ModelField, Undefined, UndefinedType
 from pydantic.main import ModelMetaclass, validate_model
@@ -39,7 +39,7 @@ from sqlalchemy.orm.attributes import set_attribute
 from sqlalchemy.orm.decl_api import DeclarativeMeta
 from sqlalchemy.orm.instrumentation import is_instrumented
 from sqlalchemy.sql.schema import MetaData
-from sqlalchemy.sql.sqltypes import LargeBinary, Time, JSON
+from sqlalchemy.sql.sqltypes import LargeBinary, Time, JSON, ARRAY
 
 from .sql.sqltypes import GUID, AutoString
 
