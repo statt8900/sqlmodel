@@ -40,12 +40,9 @@ sqlalchemy2-stubs = {version = "*", allow-prereleases = true}
 
 [tool.poetry.dev-dependencies]
 coverage = {extras = ["toml"], version = "^5.5"}
-coverage = {extras = ["toml"], version = "^5.5"}
-fastapi = "^0.68.0"
 fastapi = "^0.68.1"
 flake8 = "^3.9.2"
 isort = "^5.9.3"
-mdx-include = "^1.4.1"
 mdx-include = "^1.4.1"
 mkdocs = "^1.2.1"
 mkdocs-material = "^8.1.4"
